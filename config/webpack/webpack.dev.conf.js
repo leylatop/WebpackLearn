@@ -12,6 +12,30 @@ let config = merge(baseWebpackConfig, {
         chunkFilename: "js/[name]-[id].js",
         publicPath: ''
     },
+    /*webpack 4 第一种写法*/
+    // optimization: {
+    //     splitChunks: {
+    //         chunks: 'initial',      // 只对入口文件处理
+    //         cacheGroups: {
+    //             vendor: { // split `node_modules`目录下被打包的代码到 `vendor.js && .css` 没找到可打包文件的话，则没有。css需要依赖 `ExtractTextPlugin`
+    //                 test: /node_modules\//,
+    //                 name: 'vendor',
+    //                 chunks: 'all',
+    //                 priority: 10,
+    //                 enforce: true
+    //             },
+    //             common: { // split `common`和`components`目录下被打包的代码到`commons.js && .css`
+    //                 // test: /common\//,
+    //                 name: 'common',
+    //                 priority: 10,
+    //                 enforce: true,
+    //             }
+    //         }
+    //     },
+    //     runtimeChunk: {
+    //         name: 'manifest'
+    //     }
+    // },
     plugins: [
         /*设置开发环境*/
         new webpack.DefinePlugin({
@@ -21,6 +45,45 @@ let config = merge(baseWebpackConfig, {
         }),
         /*设置热更新*/
         new webpack.HotModuleReplacementPlugin(),
+        /* common 业务公共代码，vendor引入第三方 */
+        new webpack.optimize.CommonsChunkPlugin({
+            name: ["common", "vendor"],
+        }),
+        /* 防止 vendor hash 变化 */
+        // extract webpack runtime and module manifest to its own file in order to
+        // prevent vendor hash from being updated whenever app bundle is updated
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'manifest',
+            chunks: ['vendor']
+        }),
+
+
+        /*webpack 4 第二种写法*/
+        // new webpack.optimize.SplitChunksPlugin({
+        //     cacheGroups: {
+        //         default: {
+        //             minChunks: 2,
+        //             priority: -20,
+        //             reuseExistingChunk: true,
+        //         },
+        //         common: {
+        //             chunks: 'initial',
+        //             name: 'common',
+        //             minChunks: 2,
+        //             maxInitialRequests: 5,
+        //             minSize: 0
+        //         },
+        //         vendor: { // 抽离第三插件
+        //             test: /[\\/]node_modules[\\/]/,
+        //             chunks: 'initial',
+        //             name: 'vendor',
+        //             priority: -10
+        //         }
+        //     }
+        // }),
+        // new webpack.optimize.RuntimeChunkPlugin({
+        //     name: "manifest",
+        // }),
     ],
     module: {
         rules: [
