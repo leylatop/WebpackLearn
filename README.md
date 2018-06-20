@@ -10,11 +10,19 @@
 
 
 
+## 新增页面方法
+
+1.  在config/entry/entry.js中添加
+2.  app/component下添加对应的jsx文件夹
+3.  运行npm run devNew
+4.  运行npm run dev
+
+
+
 # 运行代码
 
-1、npm install 安装本项目使用的依赖包
-
-2、npm run dev 运行本项目
+1.  npm install 安装本项目使用的依赖包
+2. npm run dev 运行本项目
 
 
 
