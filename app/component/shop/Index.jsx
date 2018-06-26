@@ -1,4 +1,6 @@
 import React from 'react';
+import utils from '../../public/js/utils';
+import apiRequest from '../../public/js/apiRequest';
 import '../../public/css/shop.pcss'
 
 class Index extends React.Component {
@@ -19,6 +21,13 @@ class Index extends React.Component {
         };
     }
 
+    componentDidMount() {
+        apiRequest.post('newsList', {
+            start: 0,
+            end: 20
+        }, data => console.log(data), data => console.log(data.code))
+    }
+
     handleItemDel(id) {
         let list = this.state.list;
         list.splice(list.findIndex(data => data.id === id), 1);
@@ -35,6 +44,9 @@ class Index extends React.Component {
         let {list} = this.state;
         return (
             <div className="content">
+                <div>获取url中参数name的值：{utils.urlParam('name')}</div>
+                <div>15910678888：这{utils.isMobile('15910678888') ? '是' : '不是'}手机号</div>
+                <div>11111111111：这{utils.isMobile('11111111111') ? '是' : '不是'}手机号</div>
                 {
                     list.map(data => <li key={data.id}>{data.title}
                         <button onClick={this.handleItemDel.bind(this, data.id)}>删除</button>
