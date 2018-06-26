@@ -1,7 +1,7 @@
 import React from 'react';
+import List from './List';
 import '../../public/css/todoList.pcss';
 
-/*添加或删除列表*/
 class TodoList extends React.Component {
     constructor(props) {
         super(props);
@@ -9,11 +9,7 @@ class TodoList extends React.Component {
             list: []
         };
         this.handleAdd = this.handleAdd.bind(this);
-        this.handleItemDel = this.handleItemDel.bind(this);
-    }
-
-    componentDidMount() {
-
+        this.handleItemEdit = this.handleItemEdit.bind(this);
     }
 
     handleAdd() {
@@ -27,10 +23,14 @@ class TodoList extends React.Component {
         }
     }
 
-    handleItemDel(id) {
+    handleItemEdit(id, status) {
         let list = this.state.list;
-        list.find(data => data.id === id).status = 0;
+        list.find(data => data.id === id).status = status;
         this.setState({list: list})
+    }
+
+    componentDidMount() {
+
     }
 
     render() {
@@ -39,17 +39,19 @@ class TodoList extends React.Component {
             <div className="todoList">
                 <input type="text" ref="todoInput"/>
                 <button onClick={this.handleAdd}>添加</button>
-                <div className="list">
-                    {
-                        list.map(data => [
-                            data.status === 1 ?
-                                <li key={data.id}>{data.title}
-                                    <button onClick={() => this.handleItemDel(data.id)}>删除</button>
-                                </li>
-                                :
-                                null
-                        ])
-                    }
+                <div className="cont">
+                    <div className="box">
+                        全部
+                        <List list={list} handleItemEdit={this.handleItemEdit} type={0}/>
+                    </div>
+                    <div className="box">
+                        未删除
+                        <List list={list} handleItemEdit={this.handleItemEdit} type={1}/>
+                    </div>
+                    <div className="box">
+                        已删除
+                        <List list={list} handleItemEdit={this.handleItemEdit} type={2}/>
+                    </div>
                 </div>
             </div>
         );
