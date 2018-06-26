@@ -19,12 +19,27 @@ class Index extends React.Component {
         };
     }
 
+    handleItemDel(id) {
+        let list = this.state.list;
+        list.splice(list.findIndex(data => data.id === id), 1);
+        this.setState({list: list})
+    }
+
+    handleItemAdd(id) {
+        let list = this.state.list;
+        let li = <li>添加Item</li>
+        list.splice(list.findIndex(data => data.id === id), 0, li);
+        this.setState({list: list})
+    }
     render() {
         let {list} = this.state;
         return (
             <div className="content">
                 {
-                    list.map(data => <li key={data.id}>{data.title}</li>)
+                    list.map(data => <li key={data.id}>{data.title}
+                        <button onClick={this.handleItemDel.bind(this, data.id)}>删除</button>
+                        <button onClick={() => this.handleItemAdd(data.id)}>添加</button>
+                    </li>)
                 }
             </div>
         );
