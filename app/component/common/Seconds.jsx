@@ -1,5 +1,6 @@
 import React from 'react';
 import SecondsBottom from './SecondsBottom';
+import SecondsTop from './SecondsTop';
 
 class Seconds extends React.Component {
     constructor(props) {
@@ -23,12 +24,10 @@ class Seconds extends React.Component {
 
     render() {
         let state = this.state;
+        let props = this.props;
         return (
             <div className="cont">
-                <div className="top">
-                    <i className="bd_logo1" />
-                    这是{this.props.title}
-                </div>
+                <SecondsTop {...props}/>
                 {/*三种传值的方法*/}
                 <SecondsBottom seconds={this.state.seconds}/>
                 <SecondsBottom seconds={state.seconds}/>
