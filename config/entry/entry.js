@@ -19,6 +19,13 @@ let entry = [
         title: '顾客',
         keywords: '顾客,xxx',
         description: '顾客'
+    },
+    {
+        name: 'demo',
+        path: 'demo/Index.jsx',
+        title: '案例',
+        keywords: '案例,xxx',
+        description: '这是我们的案例'
     }
 ];
 module.exports = entry;
