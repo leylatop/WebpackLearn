@@ -22,15 +22,25 @@ class Seconds extends React.Component {
         clearInterval(this.interval);
     }
 
+    // render() {
+    //     let state = this.state;
+    //     let props = this.props;
+    //     return (
+    //         <div className="cont">
+    //             <SecondsTop {...props}/>
+    //             {/*三种传值的方法*/}
+    //             <SecondsBottom seconds={this.state.seconds}/>
+    //             <SecondsBottom seconds={state.seconds}/>
+    //             <SecondsBottom {...state}/>
+    //         </div>
+    //     );
+    // }
     render() {
         let state = this.state;
-        let props = this.props;
         return (
             <div className="cont">
-                <SecondsTop {...props}/>
-                {/*三种传值的方法*/}
-                <SecondsBottom seconds={this.state.seconds}/>
-                <SecondsBottom seconds={state.seconds}/>
+                <SecondsTop {...this.props} />
+                {/*这里我写了三中传值方法*/}
                 <SecondsBottom {...state}/>
             </div>
         );

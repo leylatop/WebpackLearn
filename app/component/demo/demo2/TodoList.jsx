@@ -2,8 +2,8 @@ import React from 'react';
 import List from './List';
 // import apiRequest from '../../public/js/apiRequest';
 import "babel-polyfill";
-import apiRequestAsync from '../../public/js/apiRequestAsync';
-import '../../public/css/todoList.pcss';
+import apiRequestAsync from '../../../public/js/apiRequestAsync';
+import '../../../public/css/todoList.pcss';
 
 class TodoList extends React.Component {
     constructor(props) {
@@ -49,6 +49,7 @@ class TodoList extends React.Component {
 
     render() {
         let {list} = this.state;
+        let {location} = this.props;
         return (
             <div className="todoList">
                 <input type="text" ref="todoInput"/>
@@ -67,6 +68,18 @@ class TodoList extends React.Component {
                         <List list={list} handleItemEdit={this.handleItemEdit} type={2}/>
                     </div>
                 </div>
+                {
+                    location ?
+                        <div  className="box">
+                            备注
+                            <div>hash:{location.hash}</div>
+                            <div>pathname:{location.pathname}</div>
+                            <div>search:{location.search}</div>
+                            <div>state:{location.state && location.state.fromDashboard}</div>
+                        </div>
+                        :
+                        null
+                }
             </div>
         );
     }

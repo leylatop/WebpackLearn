@@ -24,12 +24,17 @@
 
 
 
+# 生成上线包并放到服务器中
+1.  npm run ptp     在back文件夹下生成zip压缩包并上传到服务器
+
+
+
 # 新增页面方法
 
-1.  在config/entry/entry.js中添加
+1.  在config/entry/entry.js中添加类似的数组元素
 2.  app/component下添加对应的jsx文件夹
-3.  运行npm run devNew
-4.  运行npm run dev
+3.  运行npm run devNew 生成新的html、js文件
+4.  运行npm run dev运行开发环境
 
 
 
@@ -37,16 +42,17 @@
 
 # 开发环境运行代码
 
-1.  npm install 安装本项目使用的依赖包
-2.  npm run dev 编译js文件
-3.  npm run dev 运行本项目
+1.  npm install     安装本项目使用的依赖包
+2.  npm run entry   编译js文件
+3.  npm run dev     运行本项目
 
 
 
 
 # 生成生产环境代码
 
-1.  npm run p 压缩js和css代码
+1.  npm run p 压缩js和css代码，生成生产包到预定的文件夹（本项目生成的是根目录下pc文件夹）
+2.  在开发环境都运行过后才可以生成生产环境代码
 
 
 

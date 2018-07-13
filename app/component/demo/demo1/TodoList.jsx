@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../public/css/todoList.pcss';
+import '../../../public/css/todoList.pcss';
 
 /*添加或删除列表*/
 class TodoList extends React.Component {
